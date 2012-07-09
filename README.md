@@ -90,6 +90,18 @@ APIs evolve - especially during the development stage. To keep `ApiTaster.routes
 
 ![](http://i.imgur.com/qK7g5.png)
 
+### Password protecting API Taster
+
+Sometimes you'd like to protect the API documentation with a password. e.g. Staging or production environments where the documentation is published for 3rd parties. 
+
+Just add an initializer to include the Rack Basic Auth middleware
+
+```ruby
+ApiTaster::Engine.middleware.use(Rack::Auth::Basic) do |user, password|
+  password == "xxx"
+end
+``` 
+
 ## License
 
 This gem is released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
