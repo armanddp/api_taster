@@ -44,6 +44,23 @@ module ApiTaster
       end
     end
 
+    context "#credentials" do
+      before(:all) do
+        ApiTaster.credentials = {:username => 'xx', :password => 'yy' }
+
+         ApiTaster.routes do
+          get '/dummy_users/:id', :id => 1
+        end
+
+        Route.map_routes
+      end
+
+      it "provides Base64 encoded Basic Auth credentials" do
+        header = "Basic #{::Base64.strict_encode64("xx:yy")}"
+        ApiTaster.basic_authentication_header.should == header
+      end
+    end
+
     before(:all) do
       ApiTaster.routes do
         get '/dummy_users/:id', :id => 1

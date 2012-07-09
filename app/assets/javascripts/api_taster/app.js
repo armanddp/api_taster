@@ -108,6 +108,7 @@ jQuery(function($) {
 	});
 
 	$("#show-api-div").on("click", "#submit-api", function() {
+
 		$(this).parents("form").submit(function() {
 			ApiTaster.disableSubmitButton();
 
@@ -118,6 +119,12 @@ jQuery(function($) {
 					return false;
 				}
 			});
+		});
+
+		$("form").bind("ajax:beforeSend", function(e, xhr) {
+			xhr.setRequestHeader("Authorization",
+				$('#basic-authentication-header').text()
+			);
 		});
 
 		$("form").bind("ajax:complete", function(e, xhr, status) {

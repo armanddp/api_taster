@@ -10,7 +10,12 @@
 <% else %>
   <% @params.each do |param| %>
     <%= form_tag @route[:path], :method => @route[:verb], :class => 'well form-horizontal', :remote => true do %>
-
+      <% if ApiTaster.credentials %>
+          <div class="alert alert-info">
+            <strong>Basic-Auth Enabled</strong><br/><span id="basic-authentication-header" style="font-size:50%;"><%= ApiTaster.basic_authentication_header %></span>
+          </div>
+        </div>
+      <% end %>
       <% if param[:url_params].empty? && param[:post_params].empty? %>
         <div class="alert alert-info">
           No params specified.
