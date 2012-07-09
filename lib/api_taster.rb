@@ -9,9 +9,11 @@ require 'base64'
 
 module ApiTaster
   mattr_accessor :global_params
+  mattr_accessor :only_display_defined_routes
   mattr_accessor :credentials
 
   self.global_params = {}
+  self.only_display_defined_routes = false
 
 
   def self.routes(&block)

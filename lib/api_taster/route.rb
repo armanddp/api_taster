@@ -45,7 +45,11 @@ module ApiTaster
       end
 
       def grouped_routes
-        routes.group_by { |r| r[:reqs][:controller] }
+        if ApiTaster.only_display_defined_routes
+          routes.select { |route| !undefined_route?(route) }.group_by { |r| r[:reqs][:controller] }
+        else
+          routes.group_by { |r| r[:reqs][:controller] }
+        end
       end
 
       def find(id)
