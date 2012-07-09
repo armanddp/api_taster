@@ -12,7 +12,7 @@
     <%= form_tag @route[:path], :method => @route[:verb], :class => 'well form-horizontal', :remote => true do %>
       <% if ApiTaster.credentials %>
           <div class="alert alert-info">
-            <strong>Basic-Auth Enabled</strong><br/><span id="basic-authentication-header" style="font-size:50%;"><%= ApiTaster.basic_authentication_header %></span>
+            <strong>Basic-Auth Enabled</strong><br/><span id="basic-authentication-header" class="hidden"><%= ApiTaster.basic_authentication_header %></span>
           </div>
         </div>
       <% end %>
@@ -60,6 +60,7 @@
     <li class="hidden"><a href="#" id="response-json">JSON</a></li>
     <li class="active"><a href="#" id="response-raw">Raw</a></li>
   </ul>
+  <div class="prettyprint" id="status-code"></div>
   <pre class="prettyprint nowrap hidden" ref="response-json"></pre>
   <pre class="prettyprint" ref="response-raw"></pre>
 </div>

@@ -145,6 +145,7 @@ jQuery(function($) {
 			}
 
 			$("#show-api-response-div pre[ref=response-raw]").text(xhr.responseText);
+			$("#status-code").text(xhr.status);
 
 			prettyPrint();
 		});
